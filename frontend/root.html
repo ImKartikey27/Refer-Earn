@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Documentation: Referral & Wallet App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Modern Slate & Teal -->
+    <!-- Application Structure Plan: The application is designed as a single-page dashboard with a sticky side-navigation. This structure was chosen to transform the linear project document into an easily navigable and interactive project hub. Users can jump to any section (Overview, Features, Screens, etc.) instantly, allowing for non-linear exploration of the project scope. This is more user-friendly than scrolling through a long document, as it provides immediate access to specific information and a persistent context of the project's structure. -->
+    <!-- Visualization & Content Choices: Report Info -> Project Features -> Goal: Organize/Inform -> Presentation: Interactive Tabs -> Interaction: Click to switch between Customer App & Admin Panel -> Justification: Prevents a long, overwhelming list and allows users to focus on one component at a time. | Report Info -> Screen Breakdown -> Goal: Organize/Visualize -> Presentation: HTML/CSS Flow Diagram -> Interaction: None (visual aid) -> Justification: Provides a clear, visual representation of the app's architecture and user flow without using forbidden SVG/Mermaid, making the structure much easier to understand than a simple text list. | Report Info -> Tech Stack & API -> Goal: Inform -> Presentation: Styled HTML Tables -> Interaction: Hover effects -> Justification: Tables are the clearest and most standard way to present structured technical data. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1f2937;
+        }
+        .nav-link.active {
+            background-color: #0d9488;
+            color: white;
+            font-weight: 600;
+        }
+        .tab.active {
+            border-color: #0d9488;
+            color: #0d9488;
+            font-weight: 600;
+        }
+        .flow-arrow {
+            position: relative;
+            padding-right: 2.5rem;
+        }
+        .flow-arrow::after {
+            content: '→';
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #94a3b8;
+        }
+        .flow-box {
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .flow-box:hover {
+            border-color: #0d9488;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="flex min-h-screen">
+        <nav class="w-64 bg-white border-r border-gray-200 p-6 fixed h-full hidden lg:block">
+            <h2 class="text-xl font-bold text-gray-800 mb-2">Referral App</h2>
+            <p class="text-sm text-gray-500 mb-8">Project Documentation</p>
+            <ul class="space-y-2" id="desktop-nav">
+                <li><a href="#overview" class="nav-link block px-4 py-2 rounded-md text-gray-600 hover:bg-teal-50 hover:text-teal-700 transition-colors">Overview</a></li>
+                <li><a href="#features" class="nav-link block px-4 py-2 rounded-md text-gray-600 hover:bg-teal-50 hover:text-teal-700 transition-colors">Core Features</a></li>
+                <li><a href="#screens" class="nav-link block px-4 py-2 rounded-md text-gray-600 hover:bg-teal-50 hover:text-teal-700 transition-colors">Screen Breakdown</a></li>
+                <li><a href="#stack" class="nav-link block px-4 py-2 rounded-md text-gray-600 hover:bg-teal-50 hover:text-teal-700 transition-colors">Tech Stack</a></li>
+                <li><a href="#api" class="nav-link block px-4 py-2 rounded-md text-gray-600 hover:bg-teal-50 hover:text-teal-700 transition-colors">API Endpoints</a></li>
+            </ul>
+        </nav>
+
+        <main class="flex-1 lg:ml-64 p-4 sm:p-6 md:p-10">
+            <header class="mb-10">
+                <h1 class="text-4xl font-bold text-gray-900">Project Documentation: Referral & Wallet App</h1>
+                <p class="text-lg text-gray-500 mt-1">Version 1.1 | August 27, 2025</p>
+            </header>
+
+            <section id="overview" class="mb-16 scroll-mt-24">
+                <h2 class="text-3xl font-semibold border-b pb-3 mb-6">1. Project Overview & Goals</h2>
+                <div class="space-y-4 text-gray-700 leading-relaxed">
+                    <p>This document outlines the requirements for a mobile application designed to manage a customer referral program. The primary goal is to provide a platform for users to earn wallet cash by referring financial products (e.g., credit cards) and to allow an administrator to manage users, referrals, and payout requests through a dedicated web panel.</p>
+                    <p>The system is composed of two main components, each designed for its specific user base to ensure a seamless and efficient experience for both customers and administrators.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mt-8">
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-lg text-teal-700 mb-2">Customer-Facing Mobile App</h3>
+                        <p class="text-gray-600">An iOS & Android application for users to manage their profile, access referral links, track earnings, and redeem their wallet balance.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-lg text-teal-700 mb-2">Secure Admin Panel</h3>
+                        <p class="text-gray-600">A web-based dashboard for the client to manage redemption requests, credit user wallets, and oversee all platform activity in real-time.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="mb-16 scroll-mt-24">
+                <h2 class="text-3xl font-semibold border-b pb-3 mb-6">2. Core Features & Functionality</h2>
+                <p class="text-gray-700 leading-relaxed mb-8">This section breaks down the core features of both the customer-facing mobile app and the secure admin panel. Use the tabs below to explore the functionality planned for each component.</p>
+                <div>
+                    <div class="border-b border-gray-200 mb-6">
+                        <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                            <button class="tab active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-target="customer-app">Customer Mobile App</button>
+                            <button class="tab whitespace-nowrap py-4 px-1 border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 font-medium text-sm" data-target="admin-panel">Admin Panel Website</button>
+                        </nav>
+                    </div>
+                    <div id="feature-content">
+                        <div id="customer-app" class="tab-content grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">User Authentication</h4>
+                                <p class="text-sm text-gray-600">Secure registration and login system for customers.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">Home Dashboard</h4>
+                                <p class="text-sm text-gray-600">Displays wallet balance, tier level, and a list of clickable referral offers.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">Referral Offer Details</h4>
+                                <p class="text-sm text-gray-600">A dedicated screen for each offer showing benefits, features, and full T&Cs.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">Wallet & Redemption</h4>
+                                <p class="text-sm text-gray-600">Allows users to initiate payouts by entering their UPI ID and desired amount.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">Editable User Profile</h4>
+                                <p class="text-sm text-gray-600">Users can view and edit their information, such as name and UPI ID.</p>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">Transaction History</h4>
+                                <p class="text-sm text-gray-600">Provides a clear history of all earnings and redemptions.</p>
+                            </div>
+                        </div>
+                        <div id="admin-panel" class="tab-content grid md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+                             <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">Secure Admin Login</h4>
+                                <p class="text-sm text-gray-600">A separate, secure login page. Admin accounts are created manually in the backend.</p>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">Dashboard Overview</h4>
+                                <p class="text-sm text-gray-600">Presents key metrics like total pending requests and total users at a glance.</p>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">Redemption Management</h4>
+                                <p class="text-sm text-gray-600">A real-time view of all redemption requests with functionality to mark them as "Completed".</p>
+                            </div>
+                             <div class="bg-white p-6 rounded-lg border border-gray-200">
+                                <h4 class="font-semibold text-base mb-2">User Management</h4>
+                                <p class="text-sm text-gray-600">Allows the admin to view all users and manually add funds to their wallets for successful referrals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="screens" class="mb-16 scroll-mt-24">
+                <h2 class="text-3xl font-semibold border-b pb-3 mb-6">3. Screen & Page Breakdown</h2>
+                <p class="text-gray-700 leading-relaxed mb-8">This visual flow illustrates the structure and total screen count for both the mobile app and the admin panel, providing a clear map of the user journey within each platform.</p>
+                <div class="space-y-10">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Customer Mobile App (~6 Screens)</h3>
+                        <div class="flex flex-wrap items-center gap-4 text-center">
+                            <div class="flow-box flow-arrow bg-white p-4 rounded-lg min-w-[120px]">Login/Register</div>
+                            <div class="flow-box flow-arrow bg-white p-4 rounded-lg min-w-[120px]">Home Dashboard</div>
+                            <div class="flow-box flow-arrow bg-white p-4 rounded-lg min-w-[120px]">Offer Details</div>
+                            <div class="flow-box flow-arrow bg-white p-4 rounded-lg min-w-[120px]">Redemption</div>
+                            <div class="flow-box flow-arrow bg-white p-4 rounded-lg min-w-[120px]">Profile</div>
+                            <div class="flow-box bg-white p-4 rounded-lg min-w-[120px]">History</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Admin Panel Website (~4 Pages)</h3>
+                        <div class="flex flex-wrap items-center gap-4 text-center">
+                            <div class="flow-box flow-arrow bg-white p-4 rounded-lg min-w-[120px]">Admin Login</div>
+                            <div class="flow-box flow-arrow bg-white p-4 rounded-lg min-w-[120px]">Dashboard</div>
+                            <div class="flow-box flow-arrow bg-white p-4 rounded-lg min-w-[120px]">Requests Page</div>
+                            <div class="flow-box bg-white p-4 rounded-lg min-w-[120px]">User Mgmt Page</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="stack" class="mb-16 scroll-mt-24">
+                <h2 class="text-3xl font-semibold border-b pb-3 mb-6">4. Tech Stack & Libraries</h2>
+                 <p class="text-gray-700 leading-relaxed mb-8">The project will be built using a modern, robust, and scalable JavaScript-based stack, ensuring a high-quality product that is both maintainable and performant.</p>
+                <div class="bg-white rounded-lg border border-gray-200 overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-600">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Component</th>
+                                <th scope="col" class="px-6 py-3">Technology / Framework</th>
+                                <th scope="col" class="px-6 py-3">Key Libraries / Tools</th>
+                                <th scope="col" class="px-6 py-3">Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b"><td class="px-6 py-4 font-medium">Backend API</td><td class="px-6 py-4">Node.js</td><td class="px-6 py-4">Express.js, Mongoose, jsonwebtoken, bcryptjs, socket.io</td><td class="px-6 py-4">Core application logic, API, user auth, real-time events.</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4 font-medium">Database</td><td class="px-6 py-4">MongoDB</td><td class="px-6 py-4">MongoDB Atlas (Cloud Hosting)</td><td class="px-6 py-4">Storing user, referral, and transaction data.</td></tr>
+                            <tr class="bg-white border-b"><td class="px-6 py-4 font-medium">Customer App</td><td class="px-6 py-4">React Native</td><td class="px-6 py-4">React Navigation, Axios, socket.io-client</td><td class="px-6 py-4">Cross-platform (iOS & Android) mobile application.</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="px-6 py-4 font-medium">Admin Panel</td><td class="px-6 py-4">React.js</td><td class="px-6 py-4">Create React App, Axios, socket.io-client</td><td class="px-6 py-4">Secure web-based dashboard for administration.</td></tr>
+                            <tr class="bg-white"><td class="px-6 py-4 font-medium">Deployment</td><td class="px-6 py-4">PaaS / Serverless</td><td class="px-6 py-4">Heroku or Render (API), Vercel or Netlify (Admin Panel)</td><td class="px-6 py-4">Hosting without direct server management.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="api" class="scroll-mt-24">
+                <h2 class="text-3xl font-semibold border-b pb-3 mb-6">5. API Endpoint Definitions</h2>
+                <p class="text-gray-700 leading-relaxed mb-8">The backend will expose a RESTful API to enable communication between the mobile app, admin panel, and the database. Below are the preliminary definitions for the key endpoints.</p>
+                <div class="bg-white rounded-lg border border-gray-200 overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-600">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Method</th>
+                                <th scope="col" class="px-6 py-3">Endpoint</th>
+                                <th scope="col" class="px-6 py-3">Description</th>
+                                <th scope="col" class="px-6 py-3">Protection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b"><td class="px-6 py-4"><span class="font-mono bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">POST</span></td><td class="px-6 py-4 font-mono">/api/auth/register</td><td class="px-6 py-4">Register a new user.</td><td class="px-6 py-4">Public</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="px-6 py-4"><span class="font-mono bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">POST</span></td><td class="px-6 py-4 font-mono">/api/auth/login</td><td class="px-6 py-4">Log in a user or admin.</td><td class="px-6 py-4">Public</td></tr>
+                            <tr class="border-b"><td class="px-6 py-4"><span class="font-mono bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">GET</span></td><td class="px-6 py-4 font-mono">/api/user/profile</td><td class="px-6 py-4">Get the logged-in user's profile.</td><td class="px-6 py-4">User</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="px-6 py-4"><span class="font-mono bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">PUT</span></td><td class="px-6 py-4 font-mono">/api/user/profile</td><td class="px-6 py-4">Update the logged-in user's profile.</td><td class="px-6 py-4">User</td></tr>
+                            <tr class="border-b"><td class="px-6 py-4"><span class="font-mono bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">POST</span></td><td class="px-6 py-4 font-mono">/api/user/redeem</td><td class="px-6 py-4">Submit a redemption request.</td><td class="px-6 py-4">User</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="px-6 py-4"><span class="font-mono bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">GET</span></td><td class="px-6 py-4 font-mono">/api/offers</td><td class="px-6 py-4">Get all available referral offers.</td><td class="px-6 py-4">Public</td></tr>
+                            <tr class="border-b"><td class="px-6 py-4"><span class="font-mono bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">GET</span></td><td class="px-6 py-4 font-mono">/api/admin/requests</td><td class="px-6 py-4">Get all redemption requests.</td><td class="px-6 py-4">Admin</td></tr>
+                            <tr class="border-b bg-gray-50"><td class="px-6 py-4"><span class="font-mono bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">PUT</span></td><td class="px-6 py-4 font-mono">/api/admin/requests/:id</td><td class="px-6 py-4">Update a redemption request's status.</td><td class="px-6 py-4">Admin</td></tr>
+                            <tr><td class="px-6 py-4"><span class="font-mono bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">PUT</span></td><td class="px-6 py-4 font-mono">/api/admin/users/:userId/balance</td><td class="px-6 py-4">Manually add funds to a user's wallet.</td><td class="px-6 py-4">Admin</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.target;
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    tabContents.forEach(content => {
+                        if (content.id === target) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
